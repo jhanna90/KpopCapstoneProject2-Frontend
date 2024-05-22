@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './UserForm.css'
 
 const UserForm = () => {
     const navigate = useNavigate();
@@ -57,8 +58,10 @@ const UserForm = () => {
     }, [registrationSuccess, navigate]);
 
     return (
-        <div>
+        <div className='container'>
+            <h2>Create An Account!</h2>
             <form onSubmit={handleSubmit}>
+                <label>Username:</label>
                 <input
                     type="text"
                     name="username"
@@ -66,6 +69,7 @@ const UserForm = () => {
                     onChange={handleChange}
                     placeholder="Username"
                 />
+                <label>Email:</label>
                 <input
                     type="email"
                     name="email"
@@ -73,6 +77,7 @@ const UserForm = () => {
                     onChange={handleChange}
                     placeholder="Email"
                 />
+                <label>Password:</label>
                 <input
                     type="password"
                     name="password"
@@ -80,42 +85,51 @@ const UserForm = () => {
                     onChange={handleChange}
                     placeholder="Password"
                 />
+                <label>Favorite Boy Group:</label>
                 <input
                     type="text"
                     name="fav_boy_group"
                     placeholder="Favorite Boy Group"
                     value={formData.fav_boy_group}
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                />
+                <label>Favorite Girl Group:</label>
                 <input
                     type="text"
                     name="fav_girl_group"
                     placeholder="Favorite Girl Group"
                     value={formData.fav_girl_group}
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                />
+                <label>Bias:</label>
                 <input
                     type="text"
                     name="bias"
                     placeholder="Bias"
                     value={formData.bias}
                     onChange={handleChange} />
+                <label>Alt Bias:</label>
                 <input
                     type="text"
                     name="alt_bias"
                     placeholder="Alt Bias"
                     alue={formData.alt_bias}
                     onChange={handleChange} />
+                <label>Bias Wrecker:</label>
                 <input
                     type="text"
                     name="bias_wrecker"
                     placeholder="Bias Wrecker"
                     value={formData.bias_wrecker}
                     onChange={handleChange} />
+                <label>Favorite Girl Group Song:</label>
                 <input
                     type="text"
                     name="fav_girl_group_song"
                     placeholder="Favorite Girl Group Song"
                     value={formData.fav_girl_group_song}
                     onChange={handleChange} />
+                <label>Favorite Boy Group Song:</label>
                 <input
                     type="text"
                     name="fav_boy_group_song"
@@ -126,7 +140,7 @@ const UserForm = () => {
                 <button type="submit">Register</button>
             </form>
             {registrationSuccess && (
-                <div>
+                <div className='success-message'>
                     <p>User registered successfully!</p>
                 </div>
             )}

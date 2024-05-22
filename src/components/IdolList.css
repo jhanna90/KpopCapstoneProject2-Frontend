@@ -1,0 +1,36 @@
+h2 {
+    font-size: 40px;
+}
+
+#loadingIndicator {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.error-container {
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+#error-img {
+    max-width: 100%;
+    height: auto;
+}
+
+.error-container button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+.error-container button:hover {
+    background-color: #575757;
+}

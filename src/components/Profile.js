@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import './Profile.css'
 
 const Profile = () => {
     const { username } = useParams(); // Get the username from the URL
@@ -65,11 +66,11 @@ const Profile = () => {
     };
 
     if (loading) {
-        return <div>Loading...</div>; // Display loading indicator
+        return <div className="loading">Loading...</div>; // Display loading indicator
     }
 
     if (error) {
-        return <div>{error}
+        return <div className="error">{error}
             <>
                 <br />
                 <br />
@@ -81,14 +82,14 @@ const Profile = () => {
     }
 
     if (!userData) {
-        return <div>No user data available</div>; // Safety check
+        return <div className="no-data">No user data available</div>; // Safety check
     }
 
     return (
-        <div>
+        <div className="container">
             <h2>User Profile</h2>
             {/* Display user information */}
-            <div>
+            <div className="profile-info">
                 {userData && (
                     <>
                         <p>Username: {userData.username}</p>
@@ -102,8 +103,6 @@ const Profile = () => {
                     </>
                 )}
             </div>
-
-            {/* Edit and Delete Profile buttons */}
             <button onClick={() => navigate(`/profile/edit/${username}`)}>Edit Your Profile</button>
             <button onClick={handleDeleteProfile}>Delete Your Profile</button>
         </div>

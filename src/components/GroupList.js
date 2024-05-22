@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import './GroupList.css';
 
 const GroupList = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -57,12 +58,12 @@ const GroupList = () => {
     };
 
     return (
-        <div>
+        <div className='container'>
             <h2>Group List</h2>
             <form onSubmit={handleSearch}>
                 <input
                     type="text"
-                    placeholder="Search by group name"
+                    placeholder="Search by Group Name"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -70,16 +71,16 @@ const GroupList = () => {
             </form>
 
             {loading ? (
-                <div>Loading...</div>
+                <div id='loadingIndicator'>Loading...</div>
             ) : error ? (
-                <div>
+                <div className='error-container'>
                     <br />
                     {error}
                     {error.includes('No groups found') && (
                         <>
                             <br />
                             <br />
-                            <img
+                            <img id='error-img'
                                 src="https://pa1.aminoapps.com/7247/fb487526b9707cca74179e1ede5c1ad880b02246r1-480-270_hq.gif"
                                 alt="Sorry GIF"
                             />

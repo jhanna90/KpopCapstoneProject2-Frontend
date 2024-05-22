@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom'; // Import Link for hyperlinking
+import { useNavigate, Link } from 'react-router-dom';
+import './IdolList.css'
 
 const IdolList = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -54,12 +55,12 @@ const IdolList = () => {
     };
 
     return (
-        <div>
+        <div className='container'>
             <h2>Idol List</h2>
             <form onSubmit={handleSearch}>
                 <input
                     type="text"
-                    placeholder="Search by idol name"
+                    placeholder="Search by Idol's Stage Name"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -67,9 +68,9 @@ const IdolList = () => {
             </form>
 
             {loading ? (
-                <div>Loading...</div>
+                <div id='loadingIndicator'>Loading...</div>
             ) : error ? (
-                <div>
+                <div className='error-container'>
                     <br />
                     {error}
                     {error.includes('No idols found') && (
@@ -78,6 +79,7 @@ const IdolList = () => {
                             <button onClick={handleAddIdol}>Add Idol</button>
                             <br />
                             <img
+                                id='error-img'
                                 src="https://pa1.aminoapps.com/7247/fb487526b9707cca74179e1ede5c1ad880b02246r1-480-270_hq.gif"
                                 alt="Sorry GIF"
                             />

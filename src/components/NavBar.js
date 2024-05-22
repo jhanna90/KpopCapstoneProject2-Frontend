@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './NavBar.css';
 
 // Function to set username in local storage
 const setUsernameInLocalStorage = (username) => {
@@ -50,6 +51,9 @@ const NavBar = () => {
     return (
         <nav>
             <ul>
+                <li>
+                    <button onClick={() => handleNavigation('/')}>Kpop</button> {/* Button to homepage */}
+                </li>
                 <li>
                     <button onClick={() => handleNavigation('/videos')}>Videos</button>
                 </li>

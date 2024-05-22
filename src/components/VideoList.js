@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import "./VideoList.css"
 
 const VideoList = () => {
     const [videos, setVideos] = useState([]);
@@ -51,22 +52,22 @@ const VideoList = () => {
     };
 
     return (
-        <div>
+        <div className='container'>
             <h2>Video List</h2>
             <form onSubmit={handleSearch}>
                 <input
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Search for a video"
+                    placeholder="Search for a video by Song Name or Artist"
                 />
                 <button type="submit">Search</button> {/* Submits the form */}
             </form>
 
             {loading ? (
-                <div>Loading...</div>
+                <div id='loadingIndicator'>Loading...</div>
             ) : error ? (
-                <div>
+                <div className='error-container'>
                     {error}
                     {error.includes('Sorry! Video not found 😢. Would you like to add it?') && (
                         <>
@@ -74,6 +75,7 @@ const VideoList = () => {
                             <button onClick={handleAddVideo}>Add Video</button>
                             <br />
                             <img
+                                id='error-img'
                                 src="https://pa1.aminoapps.com/7247/fb487526b9707cca74179e1ede5c1ad880b02246r1-480-270_hq.gif"
                                 alt="Sorry GIF"
                             />
@@ -85,7 +87,7 @@ const VideoList = () => {
                     {videos.map((video) => (
                         <li key={video.id}>
                             <p>
-                                Song Name:
+                                <strong>Song Name: </strong>
                                 <a href={video.video} target="_blank" rel="noopener noreferrer">
                                     {video.song_name}
                                 </a>

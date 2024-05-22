@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import './GroupProfile.css';
 
 const GroupProfile = () => {
     const { name } = useParams(); // Retrieve the group name from the route parameter
@@ -32,7 +33,7 @@ const GroupProfile = () => {
     }, [name]); // Dependency array with `name` to fetch on route change
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div id='loadingIndicator'>Loading...</div>;
     }
 
     if (error) {
@@ -46,14 +47,14 @@ const GroupProfile = () => {
     return (
         <div>
             <h2>Group Profile: {group.group_name}</h2>
-            <p><strong>Short:</strong> {group.short || 'N/A'}</p> {/* Short name */}
-            <p><strong>Korean Name:</strong> {group.korean_name || 'N/A'}</p> {/* Korean name */}
-            <p><strong>Debut:</strong> {group.debut || 'N/A'}</p> {/* Debut date */}
-            <p><strong>Company:</strong> {group.company || 'N/A'}</p> {/* Managing company */}
-            <p><strong>Members:</strong> {group.members || 'N/A'}</p> {/* Current members */}
-            <p><strong>Original Members:</strong> {group.original_memb || 'N/A'}</p> {/* Original members */}
-            <p><strong>Fanclub Name:</strong> {group.fanclub_name || 'N/A'}</p> {/* Fanclub name */}
-            <p><strong>Active:</strong> {group.active ? 'Yes' : 'No'}</p> {/* Activity status */}
+            <p>Short: {group.short || 'N/A'}</p> {/* Short name */}
+            <p>Korean Name: {group.korean_name || 'N/A'}</p> {/* Korean name */}
+            <p>Debut: {group.debut || 'N/A'}</p> {/* Debut date */}
+            <p>Company: {group.company || 'N/A'}</p> {/* Managing company */}
+            <p>Members: {group.members || 'N/A'}</p> {/* Current members */}
+            <p>Original Members: {group.original_memb || 'N/A'}</p> {/* Original members */}
+            <p>Fanclub Name: {group.fanclub_name || 'N/A'}</p> {/* Fanclub name */}
+            <p>Active: {group.active ? 'Yes' : 'No'}</p> {/* Activity status */}
         </div>
     );
 };

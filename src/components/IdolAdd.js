@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./IdolAdd.css"
 
 const IdolAdd = () => {
     // State variables for form inputs
@@ -51,7 +52,7 @@ const IdolAdd = () => {
 
     // Render the form to add an idol
     return (
-        <div>
+        <div className='container'>
             <h2>Add a New Idol</h2>
             <form onSubmit={handleSubmit}>
                 <div>
