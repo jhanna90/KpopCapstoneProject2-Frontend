@@ -12,12 +12,18 @@ import UserForm from './components/UserForm';
 import Profile from './components/Profile';
 import ProfileEdit from './components/ProfileEdit';
 import Login from './components/Login';
+import HomePage from './components/HomePage'
 
 const App = () => {
+  const API_BASE_URL = process.env.REACT_APP_BASE_URL;
+
+  console.log('API Base URL:', API_BASE_URL);
+
   return (
     <Router>
       <NavBar />
       <Routes>
+        <Route path='/' element={<HomePage />} />
         <Route path="/videos" element={<VideoList />} />
         <Route path="/videos/add" element={<VideoAdd />} />
         <Route path="/idols" element={<IdolList />} />
