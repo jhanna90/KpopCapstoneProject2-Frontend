@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Login.css'
+import settings from '../settings';
 
 const Login = () => {
     const navigate = useNavigate(); // Navigation hook
@@ -10,7 +11,7 @@ const Login = () => {
         password: '',
     });
     const [error, setError] = useState(''); // State to manage error messages
-
+    const { BASE_API_URL } = settings
     // Function to set username in local storage
     const setUsernameInLocalStorage = (username) => {
         localStorage.setItem('username', username);
@@ -27,7 +28,7 @@ const Login = () => {
         }
 
         try {
-            const response = await axios.post('/api/login', formData); // Send login request
+            const response = await axios.post(`${BASE_API_URL}api/login`, formData); // Send login request
 
             if (response.data.token) {
                 // Store the token

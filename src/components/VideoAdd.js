@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './VideoAdd.css'
+import settings from '../settings';
 
 const VideoAdd = () => {
     // States for form inputs
@@ -10,6 +11,7 @@ const VideoAdd = () => {
     const [releaseDate, setReleaseDate] = useState('');
     const [director, setDirector] = useState('');
     const [koreanName, setKoreanName] = useState('');
+    const { BASE_API_URL } = settings;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,7 +24,7 @@ const VideoAdd = () => {
             korean_name: koreanName
         };
         try {
-            await axios.post('/api/videos', newVideo);
+            await axios.post(`${BASE_API_URL}api/videos`, newVideo);
             // Redirect to the video list page after adding
             window.location.href = '/videos';
         } catch (error) {

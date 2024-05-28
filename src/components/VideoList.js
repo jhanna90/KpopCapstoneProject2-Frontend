@@ -2,19 +2,20 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import "./VideoList.css"
+import settings from '../settings';
 
 const VideoList = () => {
     const [videos, setVideos] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    const { BASE_API_URL } = settings;
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchVideos = async () => {
             try {
-                const response = await axios.get('/api/videos');
+                const response = await axios.get(`${BASE_API_URL}api/videos`);
                 setVideos(response.data.videos);
                 setLoading(false);
             } catch (error) {
@@ -31,7 +32,7 @@ const VideoList = () => {
         setError(null); // Reset error state
 
         try {
-            const response = await axios.get(`/api/videos/${searchTerm}`);
+            const response = await axios.get(`${BASE_API_URL}api/videos/${searchTerm}`);
 
             if (response.data.videos.length === 0) {
                 setVideos([]); // No results

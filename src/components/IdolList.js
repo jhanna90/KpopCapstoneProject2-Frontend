@@ -2,20 +2,22 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import './IdolList.css'
+import settings from '../settings';
+
 
 const IdolList = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [idols, setIdols] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
+    const { BASE_API_URL } = settings;
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchIdols = async () => {
             setLoading(true);
             try {
-                const response = await axios.get('/api/idols');
+                const response = await axios.get(`${BASE_API_URL}api/idols`);
                 setIdols(response.data.idols);
                 setLoading(false);
             } catch (error) {
@@ -31,7 +33,7 @@ const IdolList = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.get(`/api/idols/${searchTerm}`);
+            const response = await axios.get(`${BASE_API_URL}api/idols/${searchTerm}`);
             const fetchedIdols = response.data.idols || [];
 
             if (fetchedIdols.length === 0) {

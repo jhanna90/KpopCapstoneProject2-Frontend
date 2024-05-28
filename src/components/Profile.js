@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import './Profile.css'
+import settings from '../settings';
 
 const Profile = () => {
     const { username } = useParams(); // Get the username from the URL
@@ -9,6 +10,7 @@ const Profile = () => {
     const [userData, setUserData] = useState(null); // Holds user data
     const [loading, setLoading] = useState(true); // Loading state
     const [error, setError] = useState(null); // Error state
+    const { BASE_API_URL } = settings
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -20,7 +22,7 @@ const Profile = () => {
                 }
 
                 // Fetch user data with the token in the request headers
-                const response = await axios.get(`/api/users/profile/${username}`, {
+                const response = await axios.get(`${BASE_API_URL}api/users/profile/${username}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -51,7 +53,7 @@ const Profile = () => {
             }
 
             // Send the token in the request headers when deleting the profile
-            await axios.delete(`/api/users/${username}`, {
+            await axios.delete(`${BASE_API_URL}api/users/${username}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

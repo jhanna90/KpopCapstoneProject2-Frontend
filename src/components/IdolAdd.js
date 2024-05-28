@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import "./IdolAdd.css"
+import settings from '../settings';
+
+
 
 const IdolAdd = () => {
     // State variables for form inputs
@@ -14,7 +17,7 @@ const IdolAdd = () => {
     const [birthplace, setBirthplace] = useState('');
     const [otherGroup, setOtherGroup] = useState('');
     const [gender, setGender] = useState('');
-
+    const { BASE_API_URL } = settings;
     // Function to handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent default form submission behavior
@@ -34,7 +37,7 @@ const IdolAdd = () => {
 
         try {
             // Send a POST request to the backend to add the idol
-            const response = await axios.post('/api/idols', newIdol);
+            const response = await axios.post(`${BASE_API_URL}api/idols`, newIdol);
 
             // Check if the response status is 201 (Created)
             if (response.status === 201) {

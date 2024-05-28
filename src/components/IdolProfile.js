@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom'; // Use to get route parameters
+import settings from '../settings';
 
 const IdolProfile = () => {
     const { name } = useParams(); // Get stage name from the route
     const [idol, setIdol] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { BASE_API_URL } = settings;
 
     useEffect(() => {
         const fetchIdol = async () => {
             try {
-                const response = await axios.get(`/api/idols/${name}`);
+                const response = await axios.get(`${BASE_API_URL}api/idols/${name}`);
                 if (response.data.idols.length === 0) {
                     setError('Idol not found');
                 } else {

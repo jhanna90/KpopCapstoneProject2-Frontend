@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import settings from '../settings';
 
 const ProfileEdit = () => {
     const { username } = useParams(); // Get the username from the URL
@@ -16,6 +17,7 @@ const ProfileEdit = () => {
     });
     const [loading, setLoading] = useState(true); // Loading state
     const [error, setError] = useState(null); // Error state
+    const { BASE_API_URL } = settings;
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -27,7 +29,7 @@ const ProfileEdit = () => {
                 }
 
                 // Fetch user data with the token in the request headers
-                const response = await axios.get(`/api/users/profile/${username}`, {
+                const response = await axios.get(`${BASE_API_URL}api/users/profile/${username}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -63,7 +65,7 @@ const ProfileEdit = () => {
             }
 
             // Update user data with the token in the request headers
-            await axios.patch(`/api/users/${username}`, formData, {
+            await axios.patch(`${BASE_API_URL}api/users/${username}`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

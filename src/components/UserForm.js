@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './UserForm.css'
+import settings from '../settings';
 
 const UserForm = () => {
     const navigate = useNavigate();
@@ -18,6 +19,7 @@ const UserForm = () => {
         fav_boy_group_song: ''
     });
     const [registrationSuccess, setRegistrationSuccess] = useState(false);
+    const { BASE_API_URL } = settings
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -28,7 +30,7 @@ const UserForm = () => {
         e.preventDefault();
         try {
             // Send registration request
-            const response = await axios.post('/api/register', formData);
+            const response = await axios.post(`${BASE_API_URL}api/register`, formData);
 
             // Check if registration was successful
             if (response.status === 201) {

@@ -2,18 +2,21 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './GroupProfile.css';
+import settings from '../settings';
+
 
 const GroupProfile = () => {
     const { name } = useParams(); // Retrieve the group name from the route parameter
     const [group, setGroup] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { BASE_API_URL } = settings;
 
     // Fetch the group data when the component mounts
     useEffect(() => {
         const fetchGroup = async () => {
             try {
-                const response = await axios.get(`/api/groups/${name}`);
+                const response = await axios.get(`${BASE_API_URL}api/groups/${name}`);
                 const allGroups = response.data.allGroups;
 
                 if (allGroups.length === 0) {

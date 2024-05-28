@@ -18,8 +18,8 @@ const GroupList = () => {
         const fetchGroups = async () => {
             setLoading(true);
             try {
-                const boyGroupRes = await axios.get(`${BASE_API_URL}/api/boy-groups`);
-                const girlGroupRes = await axios.get(`${BASE_API_URL}/api/girl-groups`);
+                const boyGroupRes = await axios.get(`${BASE_API_URL}api/boy-groups`);
+                const girlGroupRes = await axios.get(`${BASE_API_URL}api/girl-groups`);
                 const boyGroups = boyGroupRes.data.boyGroups || [];
                 const girlGroups = girlGroupRes.data.girlGroups || [];
                 setGroups([...boyGroups, ...girlGroups]);
@@ -39,7 +39,7 @@ const GroupList = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.get(`${BASE_API_URL}/api/groups/${searchTerm}`);
+            const response = await axios.get(`${BASE_API_URL}api/groups/${searchTerm}`);
             const fetchedGroups = response.data.allGroups || [];
 
             if (fetchedGroups.length === 0) {
